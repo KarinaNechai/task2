@@ -1,8 +1,16 @@
 package com.charakhovich.text.composite;
 
+import java.util.List;
+
 public interface TextPart {
-    public boolean add(TextPart textPart);
-    public TextPart remove (int index);
-    public TypeTextPart getTypeTextPart();
-    public TextPart getChild(int index);
+    boolean add(TextPart textPart);
+
+    TextPart remove(int index);
+
+    TypeTextPart getTypeTextPart();
+
+    TextPart getChild(int index);
+
+    public List<TextPart> getListTextPart();
+    public List<TextPart> getListTextPart(TypeTextPart typeTextPart);
 }

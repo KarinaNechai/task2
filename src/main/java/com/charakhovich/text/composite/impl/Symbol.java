@@ -4,35 +4,47 @@ import com.charakhovich.text.composite.TextPart;
 import com.charakhovich.text.composite.TypeSymbol;
 import com.charakhovich.text.composite.TypeTextPart;
 
+import java.util.List;
+
 public class Symbol implements TextPart {
     private TypeTextPart typePartText;
     private char symbol;
     private TypeSymbol typeSymbol;
 
-    public Symbol(TypeSymbol typeSymbol,char symbol) {
+    public Symbol(TypeSymbol typeSymbol, char symbol) {
         this.typePartText = TypeTextPart.SYMBOL;
-        this.typeSymbol=typeSymbol;
-        this.symbol=symbol;
+        this.typeSymbol = typeSymbol;
+        this.symbol = symbol;
     }
 
     @Override
     public boolean add(TextPart textPart) {
-        return false;
+        throw new UnsupportedOperationException("Method isn't supported");
     }
 
     @Override
     public TextPart remove(int index) {
-        return null;
+        throw new UnsupportedOperationException("Method isn't supported");
     }
 
     @Override
     public TypeTextPart getTypeTextPart() {
-        return typePartText;
+        throw new UnsupportedOperationException("Method isn't supported");
     }
 
     @Override
     public TextPart getChild(int index) {
-        return null;
+        throw new UnsupportedOperationException("Method isn't supported");
+    }
+
+    @Override
+    public List<TextPart> getListTextPart() {
+        throw new UnsupportedOperationException("Method isn't supported");
+    }
+
+    @Override
+    public List<TextPart> getListTextPart(TypeTextPart typeTextPart) {
+        throw new UnsupportedOperationException("Method isn't supported");
     }
 
     @Override

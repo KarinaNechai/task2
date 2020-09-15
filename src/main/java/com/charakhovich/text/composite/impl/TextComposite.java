@@ -3,9 +3,7 @@ package com.charakhovich.text.composite.impl;
 import com.charakhovich.text.composite.TextPart;
 import com.charakhovich.text.composite.TypeTextPart;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class TextComposite implements TextPart {
     private List<TextPart> listTextPart;
@@ -19,9 +17,37 @@ public class TextComposite implements TextPart {
         this.typeTextPart = typeTextPart;
     }
 
+    public List<TextPart> getListTextPart() {
+        return Collections.unmodifiableList(listTextPart);
+    }
+
+    @Override
+    public List<TextPart> getListTextPart(TypeTextPart typeTextPart) {
+        List<TextPart> resultPartList = new ArrayList<>();
+        if (typeTextPart != TypeTextPart.SYMBOL ){
+               if (typeTextPart != this.typeTextPart) {
+            for (TextPart part : listTextPart
+            ) {
+                if (!(part.getTypeTextPart()== TypeTextPart.SYMBOL)){
+                    List<TextPart> temp=part.getListTextPart(typeTextPart);
+                    if (!temp.isEmpty()){
+                        resultPartList.addAll(part.getListTextPart(typeTextPart));
+                    }
+                }
+                    resultPartList.addAll(part.getListTextPart(typeTextPart));
+            }
+        }
+               else {
+
+               }
+        }
+        return resultPartList;
+    }
+
     @Override
     public boolean add(TextPart textPart) {
-        return this.listTextPart.add(textPart);
+        boolean b=listTextPart.add(textPart);
+        return b;
     }
 
     @Override
@@ -59,9 +85,8 @@ public class TextComposite implements TextPart {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (TextPart textPart : this.listTextPart
+        for (TextPart textPart : listTextPart
         ) {
-
             switch (textPart.getTypeTextPart()) {
                 case PARAGRAPH: {
                     result.append(START_PARAGRAPH).append(textPart.toString()).append(END_PARAGRAPH);
